@@ -1,6 +1,55 @@
 import sqlite3
 
 
+def Insertadato(palabra , significado):
+    conn = sqlite3.connect('slam.db')
+    strsql = "insert into SLAM (id, expresion, significado) values (null,'" + palabra + "','" + significado + "')"
+
+    conn.execute(strsql)
+    conn.commit()
+    print("")
+    print("                                 -->Registro Insertado Con exito")
+    print("")
+    p=input("Presione una <Enter> para continuar")
+    conn.close()
+
+def Editadato(palabra , significado, idpalabra):
+    conn = sqlite3.connect('slam.db')
+    strsql = "update SLAM set expresion = '" + palabra + "', significado = '" + significado + "' where id = " + str(idpalabra)
+    conn.execute(strsql)
+    conn.commit()
+    print("                                 --> Registro Actualizado con Exito")
+    print("")
+    p = input("Presione una <Enter> para continuar")
+    conn.close()
+
+
+def Borradato(idpalabra):
+    conn = sqlite3.connect('slam.db')
+    strsql = "delete from  SLAM where id = " + str(idpalabra)
+    conn.execute(strsql)
+    conn.commit()
+    print("                                 --> Registro Eliminado con Exito")
+    print("")
+    p = input("Presione una <Enter> para continuar")
+    conn.close()
+
+def BuscaDato(palabra, muestra):
+    conn = sqlite3.connect('slam.db')
+    cursor = conn.cursor()
+    strsql = "SELECT ID,Expresion, significado FROM SLAM where EXPRESION like '%" + palabra + "%'"
+    cursor.execute(strsql)
+    datos = cursor.fetchall()
+    print("")
+    for dato in datos:
+            print (dato)
+    if muestra == 1:
+        print("                                 --> Registros encontrados")
+        print("")
+        p=input("Presione una <Enter> para continuar")
+
+    conn.close()
+
 def CreaBD():
     conn = sqlite3.connect('slam.db')
     consulta = conn.execute("select coalesce(1,0) existe from sqlite_master where name = 'SLAM'")
@@ -303,57 +352,6 @@ def CreaBD():
     print("                                 -->Base de datos Creada y se insertaron los registros de inicio")
     print("")
     p=input("Presione una <Enter> para continuar")
-    conn.close()
-
-
-
-def Insertadato(palabra , significado):
-    conn = sqlite3.connect('slam.db')
-    strsql = "insert into SLAM (id, expresion, significado) values (null,'" + palabra + "','" + significado + "')"
-
-    conn.execute(strsql)
-    conn.commit()
-    print("")
-    print("                                 -->Registro Insertado Con exito")
-    print("")
-    p=input("Presione una <Enter> para continuar")
-    conn.close()
-
-def Editadato(palabra , significado, idpalabra):
-    conn = sqlite3.connect('slam.db')
-    strsql = "update SLAM set expresion = '" + palabra + "', significado = '" + significado + "' where id = " + str(idpalabra)
-    conn.execute(strsql)
-    conn.commit()
-    print("                                 --> Registro Actualizado con Exito")
-    print("")
-    p = input("Presione una <Enter> para continuar")
-    conn.close()
-
-
-def Borradato(idpalabra):
-    conn = sqlite3.connect('slam.db')
-    strsql = "delete from  SLAM where id = " + str(idpalabra)
-    conn.execute(strsql)
-    conn.commit()
-    print("                                 --> Registro Eliminado con Exito")
-    print("")
-    p = input("Presione una <Enter> para continuar")
-    conn.close()
-
-def BuscaDato(palabra, muestra):
-    conn = sqlite3.connect('slam.db')
-    cursor = conn.cursor()
-    strsql = "SELECT ID,Expresion, significado FROM SLAM where EXPRESION like '%" + palabra + "%'"
-    cursor.execute(strsql)
-    datos = cursor.fetchall()
-    print("")
-    for dato in datos:
-            print (dato)
-    if muestra == 1:
-        print("                                 --> Registros encontrados")
-        print("")
-        p=input("Presione una <Enter> para continuar")
-
     conn.close()
 
 
