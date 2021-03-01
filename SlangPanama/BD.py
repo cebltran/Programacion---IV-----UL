@@ -23,7 +23,6 @@ def Editadato(palabra , significado, idpalabra):
     p = input("Presione una <Enter> para continuar")
     conn.close()
 
-
 def Borradato(idpalabra):
     conn = sqlite3.connect('slam.db')
     strsql = "delete from  SLAM where id = " + str(idpalabra)

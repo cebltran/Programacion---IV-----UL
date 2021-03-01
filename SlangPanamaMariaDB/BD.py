@@ -30,7 +30,6 @@ def Insertadato(palabra , significado):
     print("")
     p=input("Presione una <Enter> para continuar")
 
-
 def Editadato(palabra , significado, idpalabra):
 
     session.query(Slam).filter(
@@ -61,7 +60,6 @@ def Borradato(idpalabra):
     print("")
     p = input("Presione una <Enter> para continuar")
 
-
 def BuscaDato(palabra, muestra):
     palabra = '%' + palabra + '%'
     slams = session.query(Slam).filter(
@@ -73,7 +71,6 @@ def BuscaDato(palabra, muestra):
         print("                                 --> Registros encontrados")
         print("")
         p=input("Presione una <Enter> para continuar")
-
 
 def CreaBD():
     base.metadata.drop_all(engine)
