@@ -1,14 +1,14 @@
 import pymongo
-from re import split
 
 from pymongo import MongoClient
+
 MONGO_UBI = 'mongodb://localhost'
 engine = MongoClient(MONGO_UBI)
 db = engine['slam']
 
+
 def numerador():
     secuencia = db['secuencia']
-    dato = 0
     contador = secuencia.find_one_and_update(filter={'id': 'identity'},
                                              update={'$inc': {'seq': 1}},
                                              upsert=True,
@@ -16,63 +16,73 @@ def numerador():
     dato = contador["seq"]
     return dato
 
-def Insertadato(palabra , significado):
+
+def Insertadato(palabra, significado):
     palabras = db['slam']
     palabras.insert_one({'id': numerador(), 'EXPRESION': palabra, 'SIGNIFICADO': significado})
-
 
     print("")
     print("                                 -->Registro Insertado Con exito")
     print("")
-    p=input("Presione una <Enter> para continuar")
+    p = input("Presione una <Enter> para continuar")
 
-def Editadato(palabra , significado, idpalabra):
+
+def Editadato(palabra, significado, idpalabra):
     palabras = db['slam']
-    palabras.update({'id':idpalabra},{'id':idpalabra,'EXPRESION': palabra, 'SIGNIFICADO': significado})
+    palabras.update({'id': idpalabra}, {'id': idpalabra, 'EXPRESION': palabra, 'SIGNIFICADO': significado})
 
     print("                                 --> Registro Actualizado con Exito")
     print("")
     p = input("Presione una <Enter> para continuar")
 
+
 def Borradato(idpalabra):
     palabras = db['slam']
-    palabras.remove({'id':idpalabra})
+    palabras.remove({'id': idpalabra})
 
     print("                                 --> Registro Eliminado con Exito")
     print("")
     p = input("Presione una <Enter> para continuar")
 
+
 def BuscaDato(palabra, muestra):
     palabras = db['slam']
-    palabra : eval("/" + palabra + "/i")
-    salida = palabras.find({"EXPRESION": {"$regex":palabra}})
+    palabra: eval("/" + palabra + "/i")
+    salida = palabras.find({"EXPRESION": {"$regex": palabra}})
 
-    #salida = (palabras.find({"EXPRESION""": palabra}))
+    # salida = (palabras.find({"EXPRESION""": palabra}))
     for dato in salida:
-        print (dato['id'] , " - " + dato['EXPRESION'], " - " +  dato['SIGNIFICADO'])
+        print(dato['id'], " - " + dato['EXPRESION'], " - " + dato['SIGNIFICADO'])
 
     if muestra == 1:
         print("                                 --> Registros encontrados")
         print("")
-        p=input("Presione una <Enter> para continuar")
+        p = input("Presione una <Enter> para continuar")
+
 
 def CreaBD():
     secuencia = db['secuencia']
     secuencia.drop()
     secuencia.insert_one({'id': 'identity', 'seq': 0})
 
-
-
     coleccion = db['slam']
     coleccion.drop()
-    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'A guanchinche', 'SIGNIFICADO': ' a caballito, cargando a espaldas'})
-    coleccion.insert_one( {'id': numerador(), 'EXPRESION': 'A monchinche', 'SIGNIFICADO': ' a caballito, cargando a espaldas'})
-    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Abuelazón','SIGNIFICADO': ' Dícese de la conducta de entusiasmo excesivo que los abuelos sienten por los nietos; actitud típica de personas ancianas.'})
-    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Agarrar los mangos bajitos','SIGNIFICADO': 'hacer algo de la forma más facil.'})
-    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Ahuevado', 'SIGNIFICADO': ' sinónimo de huevón, lento, imbécil'})
-    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'ahuevao', 'SIGNIFICADO': ' sinónimo de huevón, lento, imbécil'})
-    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Ahuevazón','SIGNIFICADO': ' Situacion calificada de ahuevada (situación causada pur una tontera/por un tonto).'})
-    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Allá adonde uno ','SIGNIFICADO': ' El interior.(normalmente pronunciado alla onde uno)'})
+    coleccion.insert_one(
+        {'id': numerador(), 'EXPRESION': 'A guanchinche', 'SIGNIFICADO': ' a caballito, cargando a espaldas'})
+    coleccion.insert_one(
+        {'id': numerador(), 'EXPRESION': 'A monchinche', 'SIGNIFICADO': ' a caballito, cargando a espaldas'})
+    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Abuelazón',
+                          'SIGNIFICADO': ' Dícese de la conducta de entusiasmo excesivo que los abuelos sienten por los nietos; actitud típica de personas ancianas.'})
+    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Agarrar los mangos bajitos',
+                          'SIGNIFICADO': 'hacer algo de la forma más facil.'})
+    coleccion.insert_one(
+        {'id': numerador(), 'EXPRESION': 'Ahuevado', 'SIGNIFICADO': ' sinónimo de huevón, lento, imbécil'})
+    coleccion.insert_one(
+        {'id': numerador(), 'EXPRESION': 'ahuevao', 'SIGNIFICADO': ' sinónimo de huevón, lento, imbécil'})
+    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Ahuevazón',
+                          'SIGNIFICADO': ' Situacion calificada de ahuevada (situación causada pur una tontera/por un tonto).'})
+    coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Allá adonde uno ',
+                          'SIGNIFICADO': ' El interior.(normalmente pronunciado alla onde uno)'})
     coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Arrabalero', 'SIGNIFICADO': ' Buscapleitos'})
     coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Arrabalera', 'SIGNIFICADO': ' Buscapleitos'})
     coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Arranque',
@@ -545,7 +555,4 @@ def CreaBD():
     coleccion.insert_one({'id': numerador(), 'EXPRESION': 'Zambito(a)',
                           'SIGNIFICADO': ' expresión de las provincias de Herrera y Los Santos, significaniño o niña.'})
 
-    #coleccion.insert_one({'id':numerador(),'EXPRESION': 'A guanchinche', 'SIGNIFICADO': ' a caballito, cargando a espaldas'})
-
-
-
+    # coleccion.insert_one({'id':numerador(),'EXPRESION': 'A guanchinche', 'SIGNIFICADO': ' a caballito, cargando a espaldas'})
