@@ -1,7 +1,7 @@
 import DB
 opcion = -1
 def menu():
-    print("***********LANG PANAMEÑO***********")
+    print("***********SLANG PANAMEÑO***********")
     print("1- Crear BD (Reinicia datos)")
     print("2- Agregar palabra")
     print("3- Editar palabra")
