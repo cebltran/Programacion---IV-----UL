@@ -1,0 +1,46 @@
+{% extends 'Layout.html' %}
+{% block body %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Exito</strong> {{message}}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<form action="/agregar" method="POST">
+    <input type="text" name="expresion" placeholder="Expresion">
+    <input type="text" name="significado" placeholder="Significado">
+    <button type="submit">
+        Save
+    </button>
+</form>
+<table>
+    <head>
+            <tr>
+                <td>id</td>
+                <td>Expresión</td>
+                <td>Significado</td>
+                <td>Operaciones</td>
+            </tr>
+    </head>
+    <tbody>
+    {% for contact in contacs %}
+    <tr>
+        <td>{{ contact['id'] }}</td>
+        <td>{{ contact['EXPRESION'] }}</td>
+        <td>{{ contact['SIGNIFICADO'] }}</td>
+        <td>
+            <a href="/edit/{{contact['id']}} ">
+                <button type="button" class="btn btn-primary btn-sm">Editar</button></a>
+            <a href="/delete/{{contact['id']}} ">
+                <button type="button" class="btn btn-secondary btn-sm">Borrar</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
