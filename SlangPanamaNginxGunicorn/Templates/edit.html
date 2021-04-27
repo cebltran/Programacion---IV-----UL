@@ -1,0 +1,17 @@
+{% extends 'Layout.html' %}
+{% block body %}
+
+
+
+<form action="/update/{{ contacts['id'] }}" method="POST" >
+
+    <input type="text" name="expresion" placeholder="Expresion" value="{{ contacts['EXPRESION'] }}">
+    <input type="text" name="significado" placeholder="Significado" value="{{ contacts['SIGNIFICADO'] }}">
+
+
+    <button type="submit">
+    Save
+    </button>
+
+</form>
+{% endblock %}
