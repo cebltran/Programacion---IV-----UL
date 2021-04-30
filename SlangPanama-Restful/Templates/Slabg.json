@@ -1,0 +1,8 @@
+{
+  "personas": [
+    {"nombre": "Jesus", "papel": "Salvador"    },
+    {"nombre": "Isaias", "papel": "Profeta"    },
+    {"nombre": "Judas", "papel": "Traidor"    }
+
+  ]
+}
