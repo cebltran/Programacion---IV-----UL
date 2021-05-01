@@ -32,6 +32,7 @@ def Editadato(documento, nombre, correo, telefono, fecha, hora, idpalabra):
 
 def Borradato(idpalabra):
     palabras = db['citas']
+    idpalabra = int(idpalabra)
     palabras.remove({'id': idpalabra})
 
     print("                                 --> Registro Eliminado con Exito")
@@ -39,7 +40,7 @@ def Borradato(idpalabra):
 
 def BuscaDato(palabra, muestra):
     palabras = db['citas']
-    palabra: eval("/" + palabra + "/i")
+
     if muestra == 3:
         palabra = int(palabra)
         salida = palabras.find({"id":palabra})
@@ -48,6 +49,7 @@ def BuscaDato(palabra, muestra):
         salida = palabras.find()
         return salida
     if muestra == 1:
+        palabra: eval("/" + palabra + "/i")
         salida = palabras.find({"EXPRESION": {"$regex": palabra}})
         # salida = (palabras.find({"EXPRESION""": palabra}))
         for dato in salida:

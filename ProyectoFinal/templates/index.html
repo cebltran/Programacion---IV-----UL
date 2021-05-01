@@ -53,7 +53,7 @@
         <td>
             <a href="/edit/{{contact['id']}} ">Editar</a>
             <a href="/delete/{{contact['id']}} ">Borrar</a>
-            <a href="/correo/{{1}}">Mail</a>
+            <a href="/correo/{{contact['id']}} {{contact['NOMBRE']}} {{contact['FECHA']}} {{contact['HORA']}} {{contact['CORREO']}}">Mail</a>
         </td>
     </tr>
     {% endfor %}

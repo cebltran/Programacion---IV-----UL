@@ -10,6 +10,6 @@ def eviocorreo ( destino, texto):
     contras = 'modulo2021'
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
         server.login(usuario, contras)
-        server.sendmail(usuario, destino, texto)
+        server.sendmail(usuario,  destino, str(texto))
 
 
