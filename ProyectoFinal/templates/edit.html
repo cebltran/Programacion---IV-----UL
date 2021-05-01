@@ -1,0 +1,20 @@
+{% extends 'Layout.html' %}
+{% block body %}
+
+
+
+<form action="/update/{{ contacts['id'] }}" method="POST" >
+
+    <input type="text" name="DOCUMENTO"  placeholder="Documento"  value="{{ contacts['DOCUMENTO']}}" >
+    <input type="text" name="NOMBRE" placeholder="Nombre"  value="{{ contacts['NOMBRE']}}" >
+    <input type="text" name="CORREO" placeholder="Correo"  value="{{ contacts['CORREO']}}" >
+    <input type="text" name="TELEFONO" placeholder="Telefono"  value="{{ contacts['TELEFONO']}}" >
+    <input type="text" name="FECHA" placeholder="Fecha"  value="{{ contacts['FECHA']}}" >
+    <input type="text" name="HORA" placeholder="Hora"  value="{{ contacts['HORA']}}" >
+
+    <button type="submit">
+        Save
+    </button>
+
+</form>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'Layout.html' %}
+{% block body %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Exito</strong> {{message}}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<td>Sistema de Citas</td>
+
+<form action="/agregar" method="POST">
+
+    <input type="text" name="DOCUMENTO" placeholder="Documento">
+    <input type="text" name="NOMBRE" placeholder="Nombre">
+    <input type="text" name="CORREO" placeholder="Correo">
+    <input type="text" name="TELEFONO" placeholder="Telefono">
+    <input type="text" name="FECHA" placeholder="Fecha">
+    <input type="text" name="HORA" placeholder="Hora">
+
+    <button type="submit">
+        Save
+    </button>
+
+</form>
+<td>            </td>
+<table>
+    <head>
+            <tr>
+                <td>id</td>
+                <td>DOCUMENTO</td>
+                <td>NOMBRE</td>
+                <td>CORREO</td>
+                <td>TELEFONO</td>
+                <td>FECHA</td>
+                <td>HORA</td>
+
+            </tr>
+    </head>
+    <tbody>
+    {% for contact in contacs %}
+    <tr>
+        <td>{{ contact['id'] }}</td>
+        <td>{{ contact['DOCUMENTO'] }}</td>
+        <td>{{ contact['NOMBRE'] }}</td>
+        <td>{{ contact['CORREO'] }}</td>
+        <td>{{ contact['TELEFONO'] }}</td>
+        <td>{{ contact['FECHA'] }}</td>
+        <td>{{ contact['HORA'] }}</td>
+        <td>
+            <a href="/edit/{{contact['id']}} ">Editar</a>
+            <a href="/delete/{{contact['id']}} ">Borrar</a>
+            <a href="/correo/{{1}}">Mail</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'Layout.html' %}
+{% block body %}
+
+
+<form action="/enviar/{{ 1 }}"  method="POST">
+
+    <input type="text" name="correo" placeholder="correo" >
+    <input type="text" name="texto" placeholder="texto" >
+
+    <button type="submit">
+    Save
+    </button>
+
+</form>
+{% endblock %}
